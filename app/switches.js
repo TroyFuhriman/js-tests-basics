@@ -7,25 +7,31 @@
 // output: 7
 
 function daysPosition(day, offset) {
+    day = day.toLowerCase()
+    let days = [
+        "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
+    ]
+    if (offset) {
+        days.shift()
+        days.push("sunday")
+    }
     switch (day) {
-        case 1: "monday", true
-            break;
-        case 2: "tuesday"
-            break;
-        case 3: "wednesday"
-            break;
-        case 4: "thursday"
-            break;
-        case 5: "friday"
-            break;
-        case 6: "saturday"
-            break;
-        case 7: "sunday"
-            break;
-        default: return "That's not a day of the week"
-            break;
+        case "sunday":
+        case "monday":
+        case "tuesday":
+        case "wednesday":
+        case "thursday":
+        case "friday":
+        case "saturday":
+            let num = days.indexOf(day)
+            num++
+            return num
+        default:
+            return "That's not a day of the week"
+
     }
 }
+
 
 
 // --------------------------------------------
@@ -44,8 +50,26 @@ function daysPosition(day, offset) {
  */
 
 function golfScore(score, par) {
+    let scores = [-3, -2, -1, 0, 1, 2,]
+    if (par) {
+        scores.shift()
+        scores.shift()
+        scores.shift()
+        scores.shift()
+        scores.push(3, 4, 5, 6)
+    }
+    switch (score) {
+        case scores[1]: return "Ace"
+        case scores[2]: return "Eagle"
+        case scores[3]: return "Birdie"
+        case scores[4]: return "Par"
+        case scores[5]: return "Bogie"
+        case scores[6]: return "Double Bogie"
+        default: return "Ouch"
 
+    }
 }
+
 
 
 // --------------------------------------------
@@ -69,5 +93,21 @@ function golfScore(score, par) {
 let count = 0
 
 function cardCounter(card) {
-
+    switch (card) {
+        case "2": count++
+        case "3": count++
+        case "4": count++
+        case "5": count++
+        case "6": count++
+        case "7": count
+        case "8": count
+        case "9": count
+        case "10": count--
+        case "J": count--
+        case "Q": count--
+        case "K": count--
+        case "A": count--
+            if (Math.sign(count) == 1) { return count, "bet" }
+            else if (Math.sign(count) == -1) { return count, "hold" }
+    }
 }
